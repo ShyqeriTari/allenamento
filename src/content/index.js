@@ -8,6 +8,8 @@ import uniqid from "uniqid"
 
 import fs from "fs"
 
+import { validationResult } from "express-validator";
+
 import { validation } from "./validation.js";
 
 import createHttpError from "http-errors";
@@ -29,7 +31,7 @@ const writeContent = content => fs.writeFileSync(contentsPath, JSON.stringify(co
 
 testRouter.post(`/`, validation, (err, req, res, next) => {
     try {
-        const errors = validation(req)
+        const errors = validationResult(req)
         if (validation.isEmpty()) {
             const newContent = { ...req.body, id: uniqid(), createdAt: new Date(), updatedAt: new Date() }
 
