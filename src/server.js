@@ -17,6 +17,7 @@ server.use(express.json())
 server.use(cors())
 
 server.use("/test", testRouter)
+console.log(testRouter)
 
 server.use(notFound)
 
