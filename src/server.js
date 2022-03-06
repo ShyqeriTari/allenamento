@@ -12,9 +12,9 @@ const server = express()
 
 const PORT = 3001
 
-server.use(cors())
-
 server.use(express.json())
+
+server.use(cors())
 
 server.use("/test", testRouter)
 

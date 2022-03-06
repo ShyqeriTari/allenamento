@@ -14,7 +14,7 @@ import { validation } from "./validation.js";
 
 import createHttpError from "http-errors";
 
-const testRouter = express.Router()
+
 
 const fileUrl = fileURLToPath(import.meta.url)
 console.log(fileUrl)
@@ -22,11 +22,13 @@ console.log(fileUrl)
 const directory = dirname(fileUrl)
 console.log(directory)
 
-const contentsPath = join(directory, `test.json`)
+const contentsPath = join(directory, "test.json")
 console.log(contentsPath)
 
+const testRouter = express.Router()
+
 const getContent = () => JSON.parse(fs.readFileSync(contentsPath))
-const writeContent = content => fs.writeFileSync(contentsPath, JSON.stringify(content))
+const writeContent = (content) => fs.writeFileSync(contentsPath, JSON.stringify(content))
 
 
 testRouter.post(`/`, validation, async (err, req, res, next) => {
