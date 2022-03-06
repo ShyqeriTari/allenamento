@@ -41,7 +41,7 @@ testRouter.post(`/`, validation, (err, req, res, next) => {
 
             writeContent(contentArray)
 
-            res.status(201).send(newContent)
+            res.status(201).send(contentArray)
         } else {
             next(createHttpError(400, "Some errors occurred in request body", { errors }))
         }
@@ -61,5 +61,7 @@ testRouter.get(`/`, (err, req, res, next) => {
         next(error)
     }
 })
+
+
 
 export default testRouter
