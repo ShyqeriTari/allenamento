@@ -18,7 +18,6 @@ server.use(express.json())
 
 server.use("/test", testRouter)
 
-
 server.use(notFound)
 
 server.use(forbidden)

@@ -29,11 +29,11 @@ const getContent = () => JSON.parse(fs.readFileSync(contentsPath))
 const writeContent = content => fs.writeFileSync(contentsPath, JSON.stringify(content))
 
 
-testRouter.post(`/`, validation, (err, req, res, next) => {
+testRouter.post(`/`, validation, async (err, req, res, next) => {
     try {
         const errors = validationResult(req)
         if (validation.isEmpty()) {
-            const newContent = { ...req.body, id: uniqid(), createdAt: new Date(), updatedAt: new Date() }
+            const newContent = await { ...req.body, id: uniqid(), createdAt: new Date(), updatedAt: new Date() }
 
             const contentArray = getContent()
 
@@ -52,13 +52,14 @@ testRouter.post(`/`, validation, (err, req, res, next) => {
 })
 
 
-testRouter.get(`/`, (err, req, res, next) => {
+testRouter.get(`/`, async (err, req, res, next) => {
     try {
-        const contentArray = getContent()
+        const contentArray = await getContent()
 
         res.status(200).send(contentArray)
     } catch (error) {
         next(error)
+        console.log(error)
     }
 })
 
