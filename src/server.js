@@ -6,7 +6,7 @@ import testRouter from "./content/index.js";
 
 import cors from "cors"
 
-import { errorHandler, forbidden, notFound } from "./errorHandler.js";
+import { errorHandler, forbidden, notFound, notWorking } from "./errorHandler.js";
 
 const server = express()
 
@@ -21,6 +21,8 @@ server.use("/test", testRouter)
 server.use(notFound)
 
 server.use(forbidden)
+
+server.use(notWorking)
 
 server.use(errorHandler)
 

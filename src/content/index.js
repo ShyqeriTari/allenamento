@@ -55,11 +55,11 @@ testRouter.post(`/`, validation, async (err, req, res, next) => {
 testRouter.get(`/`, async (err, req, res, next) => {
     try {
         const contentArray = await getContent()
-
+        console.log(err)
         res.status(200).send(contentArray)
+       
     } catch (error) {
         next(error)
-        console.log(error)
     }
 })
 

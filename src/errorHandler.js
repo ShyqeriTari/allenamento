@@ -15,6 +15,14 @@ export const notFound = (err, req, res, next) => {
     next();
   };
 
+  export const notWorking = (err, req, res, next) => {
+    if (err && err.status === 404) {
+      res.status(404).send({ message: err.message || "Not working!" });
+      console.log(err)
+    }
+    next();
+  };
+
 export const errorHandler = (err, req, res, next) => {
     if(err) {
 if(!req.headerSent){
